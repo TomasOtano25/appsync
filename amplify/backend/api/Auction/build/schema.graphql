@@ -1,0 +1,112 @@
+type Auction {
+  id: ID!
+  name: String!
+  price: Float!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelAuctionConnection {
+  items: [Auction]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelAuctionFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  price: ModelFloatFilterInput
+  and: [ModelAuctionFilterInput]
+  or: [ModelAuctionFilterInput]
+  not: ModelAuctionFilterInput
+}
+
+type Query {
+  getAuction(id: ID!): Auction
+  listAuctions(filter: ModelAuctionFilterInput, limit: Int, nextToken: String): ModelAuctionConnection
+}
+
+input CreateAuctionInput {
+  id: ID
+  name: String!
+  price: Float!
+}
+
+input UpdateAuctionInput {
+  id: ID!
+  name: String
+  price: Float
+}
+
+input DeleteAuctionInput {
+  id: ID
+}
+
+type Mutation {
+  createAuction(input: CreateAuctionInput!): Auction
+  updateAuction(input: UpdateAuctionInput!): Auction
+  deleteAuction(input: DeleteAuctionInput!): Auction
+}
+
+type Subscription {
+  onCreateAuction: Auction @aws_subscribe(mutations: ["createAuction"])
+  onUpdateAuction: Auction @aws_subscribe(mutations: ["updateAuction"])
+  onDeleteAuction: Auction @aws_subscribe(mutations: ["deleteAuction"])
+}

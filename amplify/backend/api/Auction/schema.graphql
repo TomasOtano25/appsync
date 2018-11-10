@@ -1,0 +1,5 @@
+type Auction @model {
+  id: ID!
+  name: String!
+  price: Float!
+}
