@@ -1,10 +1,13 @@
 import * as React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import { buildSubscription } from "aws-appsync";
 
 import { listAuctions } from "./graphql/queries";
 import { ListAuctionsQuery, ListAuctionsQueryVariables } from "./API";
 import AuctionCard from "./AuctionCard";
+import { OnMount } from "./components/OnMount";
+import { onCreateAuction } from "./graphql/subscriptions";
 
 export const Auctions = () => {
   return (
@@ -13,7 +16,7 @@ export const Auctions = () => {
       variables={{ limit: 10 }}
       fetchPolicy="cache-and-network"
     >
-      {({ data, loading }) => {
+      {({ data, loading, subscribeToMore }) => {
         if (
           loading ||
           !data ||
@@ -34,6 +37,16 @@ export const Auctions = () => {
               //   gridAutoRows: "minmax(100px, auto)"
             }}
           >
+            <OnMount
+              onEffect={() => {
+                // const unsubscribe = subscribeToMore();
+                // return unsubscribe;
+                // return () => unsubscribe();
+                return subscribeToMore(
+                  buildSubscription(gql(onCreateAuction), gql(listAuctions))
+                );
+              }}
+            />
             {data.listAuctions.items.map(auction => (
               <AuctionCard
                 key={auction!.id}
