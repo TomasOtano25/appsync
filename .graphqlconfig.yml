@@ -1,16 +1,16 @@
 projects:
-  Auction:
+  AuthAuction:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.ts
     excludes:
-      - ./amplify/**
+      - amplify/**
     extensions:
       amplify:
         codeGenTarget: typescript
         generatedFileName: src/API.ts
         docsFilePath: src/graphql
-        graphQLApiId: xfkqgc5tkvcubmtvkipanwwhma
+        graphQLApiId: d3g34qbyonbwlfhm43hr4kdtoe
       endpoints:
         prod: >-
-          https://iqpsfjtkl5e3lggrojpp7xqnem.appsync-api.us-east-1.amazonaws.com/graphql
+          https://r2zvn3vxujgaha37peoqbp53ze.appsync-api.us-east-1.amazonaws.com/graphql

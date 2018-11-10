@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { withAuthenticator } from "aws-amplify-react";
 
 import "./App.css";
 import { CreateAuctionForm } from "./CreateAuctionForm";

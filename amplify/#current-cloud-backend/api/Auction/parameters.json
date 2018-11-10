@@ -1,7 +1,0 @@
-{
-    "AppSyncApiName": "Auction",
-    "schemaGraphql": "s3://appsync-20181108205907-deployment/amplify-appsync-files/schema.graphql.1541734454762",
-    "ResolverBucket": "appsync-20181108205907-deployment",
-    "ResolverRootKey": "amplify-appsync-files",
-    "DeploymentTimestamp": "1541734454762"
-}
