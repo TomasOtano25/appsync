@@ -3,19 +3,14 @@ import ReactDOM from "react-dom";
 import AWSAppSyncClient, { AUTH_TYPE } from "aws-appsync";
 import { ApolloProvider } from "react-apollo";
 import { Rehydrated } from "aws-appsync-react";
-import Amplify, { Auth } from "aws-amplify";
+import Amplify, { Auth, Storage } from "aws-amplify";
 
 import AppSyncConfig from "./aws-exports";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-Amplify.configure({
-  Auth: {
-    identityPoolId: AppSyncConfig.aws_cognito_identity_pool_id,
-    region: AppSyncConfig.aws_cognito_region,
-    mandatorySignIn: false
-  }
-});
+Amplify.configure(AppSyncConfig);
+Storage.configure({ level: "private" });
 
 const client = new AWSAppSyncClient({
   disableOffline: true,
@@ -24,10 +19,11 @@ const client = new AWSAppSyncClient({
   auth: {
     type: AppSyncConfig.aws_appsync_authenticationType as AUTH_TYPE,
     // apiKey: AppSyncConfig.aws_user_pools_web_client_id
-    credentials: async () => await Auth.currentCredentials()
-    // jwtToken: async () =>
-    //   (await Auth.currentSession()).getIdToken().getJwtToken()
-  }
+    // credentials: async () => await Auth.currentCredentials()
+    jwtToken: async () =>
+      (await Auth.currentSession()).getIdToken().getJwtToken()
+  },
+  complexObjectsCredentials: () => Auth.currentCredentials() as any
   // Amazon Cognito Federated Identities using AWS Amplify
   //credentials: () => Auth.currentCredentials(),
 

@@ -2,6 +2,7 @@ type Auction {
   id: ID!
   name: String!
   price: Float!
+  file: String
 }
 
 enum ModelSortDirection {
@@ -73,6 +74,7 @@ input ModelAuctionFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
   price: ModelFloatFilterInput
+  file: ModelStringFilterInput
   and: [ModelAuctionFilterInput]
   or: [ModelAuctionFilterInput]
   not: ModelAuctionFilterInput
@@ -87,12 +89,14 @@ input CreateAuctionInput {
   id: ID
   name: String!
   price: Float!
+  file: String
 }
 
 input UpdateAuctionInput {
   id: ID!
   name: String
   price: Float
+  file: String
 }
 
 input DeleteAuctionInput {

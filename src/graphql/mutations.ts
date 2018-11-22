@@ -6,6 +6,7 @@ export const createAuction = `mutation CreateAuction($input: CreateAuctionInput!
     id
     name
     price
+    file
   }
 }
 `;
@@ -14,6 +15,7 @@ export const updateAuction = `mutation UpdateAuction($input: UpdateAuctionInput!
     id
     name
     price
+    file
   }
 }
 `;
@@ -22,6 +24,7 @@ export const deleteAuction = `mutation DeleteAuction($input: DeleteAuctionInput!
     id
     name
     price
+    file
   }
 }
 `;

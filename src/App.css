@@ -22,6 +22,10 @@
   color: #61dafb;
 }
 
+.image-card {
+  width: 100px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

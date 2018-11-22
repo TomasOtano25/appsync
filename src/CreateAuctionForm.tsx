@@ -16,10 +16,12 @@ import {
 } from "./API";
 import { createAuction } from "./graphql/mutations";
 import { listAuctions } from "./graphql/queries";
+import { UploadFile } from "./UploadFile";
 
 interface FormValues {
   name: string;
   price: number;
+  file: string | null;
 }
 
 export const CreateAuctionForm = () => {
@@ -29,15 +31,19 @@ export const CreateAuctionForm = () => {
     >
       {createAuction => (
         <Formik<FormValues>
-          initialValues={{ name: "", price: 0 }}
-          onSubmit={async ({ name, price }, { resetForm }) => {
-            console.log("name: " + name + ", price: " + price);
+          initialValues={{ name: "", price: 0, file: null }}
+          onSubmit={async ({ name, price, file }, { resetForm }) => {
+            console.log(
+              "name: " + name + ", price: " + price,
+              ", file:" + file
+            );
             //call mutation
             const response = await createAuction({
               variables: {
                 input: {
                   name,
-                  price
+                  price,
+                  file
                 }
               },
               optimisticResponse: {
@@ -45,7 +51,8 @@ export const CreateAuctionForm = () => {
                   __typename: "Auction",
                   id: "-1",
                   name,
-                  price
+                  price,
+                  file
                 }
               },
               update: (store, { data }) => {
@@ -81,7 +88,7 @@ export const CreateAuctionForm = () => {
             console.log(response);
           }}
         >
-          {({ values, handleChange, handleSubmit }) => (
+          {({ values, handleChange, handleSubmit, setFieldValue }) => (
             <form onSubmit={handleSubmit} noValidate autoComplete="off">
               <TextField
                 name="name"
@@ -99,6 +106,12 @@ export const CreateAuctionForm = () => {
                 value={values.price}
                 onChange={handleChange}
                 margin="normal"
+              />
+              <UploadFile
+                handleFile={async (file: string) => {
+                  await setFieldValue("file", file);
+                  console.log(file);
+                }}
               />
               <br />
               <Button type="submit" variant="contained" color="default">

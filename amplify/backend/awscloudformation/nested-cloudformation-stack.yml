@@ -90,10 +90,10 @@
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://appsync-20181108205907-deployment/amplify-appsync-files/schema.graphql.1541896834406",
+					"schemaGraphql": "s3://appsync-20181108205907-deployment/amplify-appsync-files/schema.graphql.1541969348997",
 					"ResolverBucket": "appsync-20181108205907-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1541896834406"
+					"DeploymentTimestamp": "1541969348997"
 				}
 			}
 		},
@@ -144,6 +144,38 @@
 					"authRoleArn": "arn:aws:iam::012589231878:role/appsync-20181108205907-authRole",
 					"resourceName": "cognitob3e0c515",
 					"authSelections": "identityPoolAndUserPool"
+				}
+			}
+		},
+		"analyticsAuthAuction": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/appsync-20181108205907-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"Parameters": {
+					"appName": "AuthAuction",
+					"roleName": "pinpointLambdaRole4b9b514f",
+					"cloudWatchPolicyName": "cloudWatchPolicy4b9b514f",
+					"pinpointPolicyName": "pinpointPolicy4b9b514f",
+					"authPolicyName": "pinpoint_amplify_4b9b514f",
+					"unauthPolicyName": "pinpoint_amplify_4b9b514f",
+					"authRoleName": "appsync-20181108205907-authRole",
+					"unauthRoleName": "appsync-20181108205907-unauthRole",
+					"IAMPrefix": "012589231878"
+				}
+			}
+		},
+		"storages3a5933d13": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/appsync-20181108205907-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"Parameters": {
+					"bucketName": "appsyncd60bcbc149434ae6bca1b0a8166c20c5",
+					"authPolicyName": "s3_amplify_a5933d13",
+					"unauthPolicyName": "s3_amplify_a5933d13",
+					"authRoleName": "appsync-20181108205907-authRole",
+					"unauthRoleName": "appsync-20181108205907-unauthRole",
+					"authPermissions": "rw",
+					"unauthPermissions": "rw"
 				}
 			}
 		}

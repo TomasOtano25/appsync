@@ -5,12 +5,14 @@ export type CreateAuctionInput = {
   id?: string | null,
   name: string,
   price: number,
+  file?: string | null,
 };
 
 export type UpdateAuctionInput = {
   id: string,
   name?: string | null,
   price?: number | null,
+  file?: string | null,
 };
 
 export type DeleteAuctionInput = {
@@ -21,6 +23,7 @@ export type ModelAuctionFilterInput = {
   id?: ModelIDFilterInput | null,
   name?: ModelStringFilterInput | null,
   price?: ModelFloatFilterInput | null,
+  file?: ModelStringFilterInput | null,
   and?: Array< ModelAuctionFilterInput | null > | null,
   or?: Array< ModelAuctionFilterInput | null > | null,
   not?: ModelAuctionFilterInput | null,
@@ -74,6 +77,7 @@ export type CreateAuctionMutation = {
     id: string,
     name: string,
     price: number,
+    file: string | null,
   } | null,
 };
 
@@ -87,6 +91,7 @@ export type UpdateAuctionMutation = {
     id: string,
     name: string,
     price: number,
+    file: string | null,
   } | null,
 };
 
@@ -100,6 +105,7 @@ export type DeleteAuctionMutation = {
     id: string,
     name: string,
     price: number,
+    file: string | null,
   } | null,
 };
 
@@ -113,6 +119,7 @@ export type GetAuctionQuery = {
     id: string,
     name: string,
     price: number,
+    file: string | null,
   } | null,
 };
 
@@ -130,6 +137,7 @@ export type ListAuctionsQuery = {
       id: string,
       name: string,
       price: number,
+      file: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -141,6 +149,7 @@ export type OnCreateAuctionSubscription = {
     id: string,
     name: string,
     price: number,
+    file: string | null,
   } | null,
 };
 
@@ -150,6 +159,7 @@ export type OnUpdateAuctionSubscription = {
     id: string,
     name: string,
     price: number,
+    file: string | null,
   } | null,
 };
 
@@ -159,5 +169,6 @@ export type OnDeleteAuctionSubscription = {
     id: string,
     name: string,
     price: number,
+    file: string | null,
   } | null,
 };

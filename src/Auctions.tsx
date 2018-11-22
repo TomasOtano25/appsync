@@ -47,11 +47,13 @@ export const Auctions = () => {
                 );
               }}
             />
+
             {data.listAuctions.items.map(auction => (
               <AuctionCard
                 key={auction!.id}
                 name={auction!.name}
                 price={auction!.price}
+                image={auction!.file}
               />
             ))}
           </div>

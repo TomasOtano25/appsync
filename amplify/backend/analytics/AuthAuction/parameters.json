@@ -1,0 +1,11 @@
+{
+    "appName": "AuthAuction",
+    "roleName": "pinpointLambdaRole4b9b514f",
+    "cloudWatchPolicyName": "cloudWatchPolicy4b9b514f",
+    "pinpointPolicyName": "pinpointPolicy4b9b514f",
+    "authPolicyName": "pinpoint_amplify_4b9b514f",
+    "unauthPolicyName": "pinpoint_amplify_4b9b514f",
+    "authRoleName": "appsync-20181108205907-authRole",
+    "unauthRoleName": "appsync-20181108205907-unauthRole",
+    "IAMPrefix": "012589231878"
+}

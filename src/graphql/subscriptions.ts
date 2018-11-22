@@ -6,6 +6,7 @@ export const onCreateAuction = `subscription OnCreateAuction {
     id
     name
     price
+    file
   }
 }
 `;
@@ -14,6 +15,7 @@ export const onUpdateAuction = `subscription OnUpdateAuction {
     id
     name
     price
+    file
   }
 }
 `;
@@ -22,6 +24,7 @@ export const onDeleteAuction = `subscription OnDeleteAuction {
     id
     name
     price
+    file
   }
 }
 `;

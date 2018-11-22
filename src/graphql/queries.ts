@@ -6,6 +6,7 @@ export const getAuction = `query GetAuction($id: ID!) {
     id
     name
     price
+    file
   }
 }
 `;
@@ -19,6 +20,7 @@ export const listAuctions = `query ListAuctions(
       id
       name
       price
+      file
     }
     nextToken
   }
